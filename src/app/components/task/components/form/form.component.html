@@ -1,0 +1,88 @@
+
+<div class="container text-center">
+    <h1>Listado de Tareas</h1>
+
+    <div class="my-2 text-left">
+        <button class="btn btn-primary btn-rounded" type="button" [routerLink]="['/tasks']">Ir A listado</button>
+    </div>
+
+
+    <div class="card bg-dark text-white my-3">
+       
+        <div class="card-body">
+            <h5 class="card-title">Datos</h5>
+
+
+            <form #taskForm="ngForm">
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2" for="name">Nombre</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" [(ngModel)]="task.name" name="name"  #name="ngModel"> <!--required minlength="4"-->
+                    </div>
+                   
+                </div>    
+
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2" for="apellido">Descripcion</label>
+                
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" [(ngModel)]="task.description" name="description"  #description="ngModel"> <!--required minlength="4"-->
+                    </div>
+                        
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2" for="apellido">Fecha De Creación</label>
+                
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" [(ngModel)]="task.createdAt" name="creatAt"  #creadAt="ngModel"> <!--required minlength="4"-->
+                    </div>
+                        
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2" for="apellido">Fecha De Actualización</label>
+                
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" [(ngModel)]="task.updatedAt" name="updatedAt"  #updatedAt="ngModel"> <!--required minlength="4"-->
+                    </div>
+                        
+                </div>
+
+    
+        
+            <!-- <div class="form-group row">
+                <label class="col-form-label col-sm-2" for="createAt">Fecha de creacion</label>
+            
+                <div class="col-sm-6">
+                   
+                    <mat-form-field>
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [matDatepicker]="creatAt" class="form-control" [(ngModel)]="task.createdAt" name="createAt" #createAt="ngModel">
+                        <mat-datepicker-toggle matSuffix [for]="creatAt"></mat-datepicker-toggle>
+                        <mat-datepicker #creatAt></mat-datepicker>
+                      </mat-form-field>
+                </div>
+            </div> -->
+               
+
+            <div class="form-group row " >
+                <div class="col-sm-6">
+                    <button class="btn-primary btn-rounded" role="button" (click)="create()" *ngIf="!task.id else elseBlock" [disabled]="!taskForm.form.valid">Crear</button>
+
+                    <ng-template #elseBlock>
+                        <button class="btn-primary btn-rounded" role="button" (click)="update()" [disabled]="!taskForm.form.valid">Editar</button>
+                    </ng-template>
+
+                </div>
+            </div>
+
+
+               
+            </form>
+        </div>
+
+
+
+
+</div>
