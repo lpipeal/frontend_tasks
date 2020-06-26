@@ -3,6 +3,8 @@
 
     <div class="my-2 text-left">
       <button class="btn btn-primary btn-rounded" type="button" [routerLink]="['/tasks/form']">Crear Tarea</button>
+      
+    
     </div>
 
     <table class="table">
@@ -24,8 +26,8 @@
             <td>{{task.description}}</td>
             <td>{{task.createdAt}}</td>
             <td>{{task.updatedAt}}</td>
-            <td><button class="btn btn-primary">Editar</button></td>
-            <td><button class="btn btn-danger">Eliminar</button></td>
+            <td><button class="btn btn-primary" [routerLink]="['/tasks/form', task.id]">Editar</button></td>
+            <td><button class="btn btn-danger" (click) = "deleteTask(task)">Eliminar</button></td>
           </tr>
         </tbody>
       </table>

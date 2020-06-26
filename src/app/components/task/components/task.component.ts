@@ -8,10 +8,8 @@ import { Task } from '../entity/task';
   styleUrls: ['./task.component.sass']
 })
 export class TaskComponent implements OnInit {
-
+ 
   constructor(private taskService:TaskService) { }
-
-  clientes:string ='hola';
 
   tasks: Task[]; 
 
@@ -26,7 +24,15 @@ export class TaskComponent implements OnInit {
 
   }
 
-  
+
+  deleteTask(task:Task):void{
+      this.taskService.deleteTask(task.id).subscribe(
+        response => {
+          this.tasks = this.tasks.filter(ta => ta !==task);
+          
+      }
+      );
+  }
 
 
 
