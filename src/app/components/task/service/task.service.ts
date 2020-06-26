@@ -18,10 +18,26 @@ export class TaskService {
 
 
   getTasks():Observable<Task>{
-    return this.http.get<Task>(this.urlEndpoint).pipe(
-     
+    return this.http.get<Task>(`${this.urlEndpoint}`).pipe(
     );
   }
+
+  getTask(id:number):Observable<Task>{
+    return this.http.get<Task>(`${this.urlEndpoint}/${id}`).pipe();
+  }
+
+  createTask(task:Task):Observable<Task>{
+    return this.http.post<Task>(`${this.urlEndpoint}`,task).pipe();
+  }
+
+  updateTask(task:Task):Observable<Task>{
+    return this.http.put<Task>(`${this.urlEndpoint}/${task.id}`,task).pipe();
+  }
+
+  deleteTask(id:number):Observable<Task>{
+    return this.http.delete<Task>(`${this.urlEndpoint}/${id}`).pipe();  
+  }
+
 
 
 
