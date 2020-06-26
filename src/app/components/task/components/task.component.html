@@ -1,0 +1,35 @@
+<div class="container text-center">
+    <h1>Listado de Tareas</h1>
+
+    <div class="my-2 text-left">
+      <button class="btn btn-primary btn-rounded" type="button" [routerLink]="['/tasks/form']">Crear Tarea</button>
+    </div>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Fecha de Creación</th>
+            <th scope="col">Fecha de Actualización</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks">
+            <th scope="row">{{task.id}}</th>
+            <td>{{task.name}}</td>
+            <td>{{task.description}}</td>
+            <td>{{task.createdAt}}</td>
+            <td>{{task.updatedAt}}</td>
+            <td><button class="btn btn-primary">Editar</button></td>
+            <td><button class="btn btn-danger">Eliminar</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+</div>
+
+
