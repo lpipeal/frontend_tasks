@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../../entity/task';
+import { TaskService } from '../../service/task.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -7,24 +9,35 @@ import { Task } from '../../entity/task';
   styleUrls: ['./form.component.sass']
 })
 export class FormComponent implements OnInit {
-
+  today: number = Date.now();
   task:Task = new Task();
   titulo:string = 'Crear'
 
-  constructor() { }
+  constructor(private taskService:TaskService, private router:Router, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-  
-
+    this.loadTask();
   }
 
-
-  create(){
-
+  loadTask():void{
+    this.activatedRoute.params.subscribe(params=>{
+      let id = params['id'];
+      if(id){
+        this.taskService.getTask(id).subscribe((task)=>this.task=task);
+      }
+    });
   }
 
-  update(){
+  createTask():void{
+      this.taskService.createTask(this.task).subscribe((json)=>{
+        this.router.navigate(['/tasks']);
+      });
+  }
 
+  updateTask():void{
+      this.taskService.updateTask(this.task).subscribe((json)=>{
+        this.router.navigate(['/tasks']);
+      });
   }
 
 }

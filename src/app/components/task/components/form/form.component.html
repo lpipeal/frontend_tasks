@@ -5,7 +5,7 @@
     <div class="my-2 text-left">
         <button class="btn btn-primary btn-rounded" type="button" [routerLink]="['/tasks']">Ir A listado</button>
     </div>
-
+    
 
     <div class="card bg-dark text-white my-3">
        
@@ -31,20 +31,20 @@
                         
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row" *ngIf="task.id">
                     <label class="col-form-label col-sm-2" for="apellido">Fecha De Creación</label>
                 
-                    <div class="col-sm-6">
-                        <input class="form-control" type="text" [(ngModel)]="task.createdAt" name="creatAt"  #creadAt="ngModel"> <!--required minlength="4"-->
+                    <div class="col-sm-6" >
+                        <input class="form-control" type="text" [(ngModel)]="task.createdAt" name="creatAt"  #creadAt="ngModel" disabled > <!--required minlength="4"-->
                     </div>
                         
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row" *ngIf="task.id">
                     <label class="col-form-label col-sm-2" for="apellido">Fecha De Actualización</label>
                 
                     <div class="col-sm-6">
-                        <input class="form-control" type="text" [(ngModel)]="task.updatedAt" name="updatedAt"  #updatedAt="ngModel"> <!--required minlength="4"-->
+                        <input class="form-control" type="text" [(ngModel)]="task.updatedAt" name="updatedAt"  #updatedAt="ngModel" disabled> <!--required minlength="4"-->
                     </div>
                         
                 </div>
@@ -68,10 +68,10 @@
 
             <div class="form-group row " >
                 <div class="col-sm-6">
-                    <button class="btn-primary btn-rounded" role="button" (click)="create()" *ngIf="!task.id else elseBlock" [disabled]="!taskForm.form.valid">Crear</button>
+                    <button class="btn btn-primary btn-rounded" role="button" (click)="createTask()" *ngIf="!task.id else elseBlock" [disabled]="!taskForm.form.valid">Crear</button>
 
                     <ng-template #elseBlock>
-                        <button class="btn-primary btn-rounded" role="button" (click)="update()" [disabled]="!taskForm.form.valid">Editar</button>
+                        <button class="btn btn-primary btn-rounded" role="button" (click)="updateTask()" [disabled]="!taskForm.form.valid">Editar</button>
                     </ng-template>
 
                 </div>

@@ -8,6 +8,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/tasks', pathMatch: 'full'},
   {path: 'tasks', component: TaskComponent},
   {path: 'tasks/form', component: FormComponent},
+  {path: 'tasks/form/:id', component: FormComponent},
 
 ];
 
