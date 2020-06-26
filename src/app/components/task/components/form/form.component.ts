@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Task } from '../../entity/task';
 import { TaskService } from '../../service/task.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form',
@@ -31,12 +32,15 @@ export class FormComponent implements OnInit {
   createTask():void{
       this.taskService.createTask(this.task).subscribe((json)=>{
         this.router.navigate(['/tasks']);
-      });
+        swal.fire('Tarea Creada',`Tarea ${json.name} ha sido creada`,'success')
+      })
+      
   }
 
   updateTask():void{
       this.taskService.updateTask(this.task).subscribe((json)=>{
         this.router.navigate(['/tasks']);
+        swal.fire('Tarea Actualizada',`Tarea ${json.name} ha sido actualizada`,'success')
       });
   }
 
